@@ -8,7 +8,7 @@
 var para = "hi there\n" +
     "nice to meet you\n" +
     "Thanks"
-console.log(para)
+console.log(para);
 
 /*console.log("hi");*/
 
