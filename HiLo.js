@@ -1,10 +1,10 @@
 /**
  * HiLo - choose number and zero in on it
  *
- * Check NW code
+ * Check NW code for other version
  */
 
-var times = 100000,
+/*var times = 100000,
     guesses = [];
 
 while(times--){
@@ -25,7 +25,7 @@ console.log("average", sum / guesses.length);
 
 
 
-function hilo() {
+function hilo() { */
     var min = 1,
         max = 100000,
         guesses = [],
@@ -38,7 +38,7 @@ function hilo() {
         guess();
     }
 
-    return guesses;
+  //  return guesses;
 
     function guess() {
         var low = getHighestLow(),
@@ -46,6 +46,9 @@ function hilo() {
             current = {
                 num: low + Math.floor((high - low) / 2) //guess, at first is 50. if too high, guess for around 25, etc.
             };
+
+        //nw code here for filter
+
         if (current.num < num) {current.dir = -1}
         else if (current.num > num) {current.dir = 1}
         else {current.dir = 0};
@@ -78,7 +81,7 @@ function hilo() {
     }
 
     function randomNum(max) {
-//creates number between 1 and 100
+//creates number between 1 and 100, rounds up with ceil
         return Math.ceil(Math.random() * max);
     }
-}
+//}
