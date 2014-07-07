@@ -19,16 +19,16 @@ console.log("slugResult: ", slugResult);
 var nl2brResult = newline2br(inputText);
 console.log("newline2br: ", nl2brResult);
 
-var badNum = "12309gy65784";
-var badNum2 = "1234567891011"
+var badNum = "12309!gy65784";
+var badNum2 = "1234567891011";
 var goodNum = "5309259837";
-console.log("phoneFormat bad: ",phoneFormat(badNum));
-console.log("phoneFormat bad: ",phoneFormat(badNum2));
-console.log("phoneFormat good: ",phoneFormat(goodNum));
+console.log("phoneFormat results: ",phoneFormat(badNum));
+console.log("phoneFormat results: ",phoneFormat(badNum2));
+console.log("phoneFormat results: ",phoneFormat(goodNum));
 
 function escapeInputText(str){
     var arr = str.split('');
-    var escaped = []
+    var escaped = [];
     arr.forEach(function (letter){
         switch (letter) {
             case "!":
@@ -67,33 +67,43 @@ function newline2br(str) {
     return str.replace("\n", "<br>")
 }
 
-
 function phoneFormat(numStr) {
 //    phone number format - detect if a string is a phone number
 // and properly format it with dashes.
-    var reg = /\D +/; //includes non-number chars
+    var reg = /(\D)/g; //includes non-number chars
     if (numStr.match(reg)) {
-        return "Non-numbers are included: string invalid."
+        return "Non-numbers are included: string invalid: " + numStr;
     }
    if (numStr.length > 10) {
     if (numStr[0] ==="0") {
-        return "String is long, it might be an international number, I'll ignore it";
+        return "String is long, it might be an international number, I'll ignore it: " + numStr;
     }
-    else{
-        return "String is too long and contains characters; it is not a phone number.";
+    else {
+        return "String is too long; it is not a phone number: " + numStr;
     }
    } else {
-       var newNum = parseInt(numStr,10);
-//       divide to get areaCode, digit3, digit4 or slice
-//       var areaCode = parseInt(newNum/ 10000000);
        var areaCode = numStr.slice(0,3);
        var digit3 = numStr.slice(3,6);
        var digit4 = numStr.slice(6,10);
        return areaCode + "-" + digit3 + "-" + digit4;
 //       console.log(areaCode, digit3, digit4)
    }
+}
 
+//Array code **********************
+var testArr = [1,2,3,4,3,4];
+console.log(createUniqueArray(testArr));
 
-
-
+function createUniqueArray(arr) {
+//    unique: return a new array with only unique items in that array
+// so  unique([1,3,4,3,3]) -> [1,3,4]
+//
+    var uArr = [];
+    arr.forEach(function (item) {
+        if (uArr.length == 0) uArr.push(item);
+        else {
+            if (uArr.indexOf(item) == false)uArr.push(item);
+        }
+    });
+    return uArr;
 }
